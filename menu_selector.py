@@ -51,8 +51,8 @@ def start_process(path):
             print(keywords)
             keyword = input('type keyword:')
             if keyword in keywords:
-                print("not implemented yet")
-                # fill this block
+                # 입력한 keyword에 맞게 sort_by_keyword 함수를 호출하여 실행.
+                parking_spot_list = parking_spot_manager.sort_by_keyword(parking_spot_list, keyword)
             else:
                 print("invalid input")
         elif select == 4:

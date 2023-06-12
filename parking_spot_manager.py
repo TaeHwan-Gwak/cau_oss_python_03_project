@@ -26,8 +26,6 @@ class parking_spot:
         s += f"(lat:{item['latitude']}, long:{item['longitude']})"
         return s
 
-
-
     def get(self, keyword='name'):  # 기본 인수는 'name' 으로 지정.
         """ __item[keyword] 값을 반환하기 위한 함수 """
         return self.__item[keyword]
@@ -81,6 +79,17 @@ def filter_by_location(spots, locations):
        위의 함수들과 차이가 있다면 튜플의 값과 클래스 객체의 리스트 값을 비교하여 리스트 함축을 진행한다는 것이다.
     """
     return [i for i in spots if min_lat < i.get('latitude') < max_lat and min_long < i.get('longitude') < max_long]
+
+
+# version#4
+def sort_by_keyword(spots, keyword):
+    """
+        spots과 keyword를 매개변수를 받아 정렬을 수행.
+        정렬기준의 자료형은 문자열이며, parking_spot 객체가 저장하고 잇는 딕셔너리의 key값과 동일한 목록을 지원
+
+        내장함수 sorted를 이용했으며, 추가적으로 sorted의 비교기준을 정하는 key 매개변수의 인수는 lambda 함수를 이용해 구현.
+    """
+    return sorted(spots, key=lambda i: i.get(keyword))
 
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
