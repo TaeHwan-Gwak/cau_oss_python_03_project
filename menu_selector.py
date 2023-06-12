@@ -13,6 +13,7 @@ def start_process(path):
         print("[4] exit")
         select = int(input('type:'))
         if select == 1:
+            # version#2 에 해당하는 내용으로써 print_spot 함수를 호출한다.
             parking_spot_manager.print_spots(parking_spot_list)
         elif select == 2:
             print("---filter by---")
@@ -22,29 +23,26 @@ def start_process(path):
             print("[4] ptype")
             print("[5] location")
             select = int(input('type:'))
+            # version#3 에 해당하는 내용으로써 각각의 경우에 맞는 filter_by_(key) 함수를 호출한다.
             if select == 1:
                 keyword = input('type name:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_name(parking_spot_list, keyword)
             elif select == 2:
                 keyword = input('type city:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_city(parking_spot_list, keyword)
             elif select == 3:
                 keyword = input('type district:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_district(parking_spot_list, keyword)
             elif select == 4:
                 keyword = input('type ptype:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_ptype(parking_spot_list, keyword)
             elif select == 5:
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
-                min_lon = float(input('type min long:'))
-                max_lon = float(input('type max long:'))
-                print("not implemented yet")
-                # fill this block
+                min_long = float(input('type min long:'))  # parking_spot_list 와 동일하게 하기 위해 min_lon 을 min_long 으로 변경
+                max_long = float(input('type max long:'))  # 위와 동일
+                parking_spot_list = parking_spot_manager.filter_by_location(parking_spot_list,
+                                                                            (min_lat, max_lat, min_long, max_long))
             else:
                 print("invalid input")
         elif select == 3:
@@ -55,8 +53,10 @@ def start_process(path):
             if keyword in keywords:
                 print("not implemented yet")
                 # fill this block
-            else: print("invalid input")
+            else:
+                print("invalid input")
         elif select == 4:
+            # version#2 에 해당하는 내용으로써 Exit를 출력하고 반복을 종료하도록 한다.
             print("Exit")
             break
         else:
